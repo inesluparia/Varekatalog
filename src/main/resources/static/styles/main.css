@@ -1,0 +1,47 @@
+body {
+    font-family: sans-serif;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+table {
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px 40px 20px 30px;
+}
+
+th {
+    font-weight: bold;
+}
+
+tr {
+    border-top: 1px solid #ddd;
+}
+
+a {
+    text-decoration: none;
+    color:white;
+}
+
+button{
+    padding: 10px;
+    border-radius: 8px;
+    border: 0;
+}
+
+button :hover {
+    fill-opacity: 80;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.red {
+    background-color: darkred;
+}
+
+.blue {
+    background-color: mediumblue;
+}

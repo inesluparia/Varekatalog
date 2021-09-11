@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>VARERKATALOG</title>
+</head>
+<body>
+<main>
+    <h2>Vareliste</h2>
+    <table>
+        <tr>
+            <th>Varenavn</th>
+            <th>Pris</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.name}">Some item</td>
+            <td th:text="${product.price}">Some price</td>
+            <td><button class="orange"><a th:href="${'edit?id=' + product.id}">Opdater</a></button></td>
+            <td><button class="red"><a th:href="${'delete?id=' + product.id}">Slet</a></button></td>
+        </tr>
+    </table>
+    <span>
+        <button class="blue">
+            <a href="add">Opret produkt</a>
+        </button>
+    </span>
+    <br>
+    <h1>
+        <span class="message" th:if="${message}"><p th:text="${message}"></p></span>
+    </h1>
+</main>
+</body>
+</html>

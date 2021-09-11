@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Opdater vare</title>
+</head>
+<body>
+<h2>Opdater vare</h2>
+<section>
+    <form name="edit-product" action="edit" method="POST" id="add-product">
+        <h3>Varenavn</h3>
+        <textarea type="text" name="product-name" th:text="${product.name}"></textarea>
+        <br>
+        <h3>Varepris</h3>
+        <textarea type="text" name="product-price" th:text="${product.price}"></textarea>
+        <br>
+        <button class="blue" type="submit">Opdater</button>
+    </form>
+</section>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Tilføj Vare</title>
+</head>
+<body>
+
+<h2>Opret ny vare</h2>
+<section>
+    <form name="add-product" action="add" method="POST" id="add-product">
+        <h3>Varenavn</h3>
+        <input type="text" name="product-name">
+        <br>
+        <h3>Varepris</h3>
+        <input type="text" name="product-price"><br>
+        <br>
+        <button class="blue" type="submit">Opret vare</button>
+    </form>
+</section>
+<section class="message" th:if="${message}">
+<p th:text="${message}"></p>
+</section>
+
+</body>
+</html>
