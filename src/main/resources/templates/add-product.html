@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/main.css">
@@ -9,12 +9,12 @@
 
 <h2>Opret ny vare</h2>
 <section>
-    <form name="add-product" action="add" method="POST" id="add-product">
+    <form name="add-product" action="/add" method="POST" id="add-product">
         <h3>Varenavn</h3>
-        <input type="text" name="product-name">
+        <input type="text" name="name">
         <br>
         <h3>Varepris</h3>
-        <input type="text" name="product-price"><br>
+        <input type="text" name="price"><br>
         <br>
         <button class="blue" type="submit">Opret vare</button>
     </form>

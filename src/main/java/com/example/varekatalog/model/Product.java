@@ -6,9 +6,13 @@ public class Product {
     private int price;
     private int id;
 
-    public Product(String name, int price){
+    public Product(String name, int price, int id) {
         this.name = name;
         this.price = price;
+        this.id = id;
+    }
+
+    public Product() {
     }
 
     @Override
@@ -19,13 +23,6 @@ public class Product {
                 ", id=" + id +
                 '}';
     }
-
-    public Product(String name, int price, int id) {
-        this.name = name;
-        this.price = price;
-        this.id = id;
-    }
-
 
     public String getName() {
         return name;

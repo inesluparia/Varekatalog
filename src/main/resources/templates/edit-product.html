@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/main.css">
@@ -8,12 +8,13 @@
 <body>
 <h2>Opdater vare</h2>
 <section>
-    <form name="edit-product" action="edit" method="POST" id="add-product">
+    <form name="edit-product" action="/edit" method="POST" id="add-product">
+        <input type="hidden" name="id" th:value="${product.id}">
         <h3>Varenavn</h3>
-        <textarea type="text" name="product-name" th:text="${product.name}"></textarea>
+        <textarea type="text" name="name" th:text="${product.name}"></textarea>
         <br>
         <h3>Varepris</h3>
-        <textarea type="text" name="product-price" th:text="${product.price}"></textarea>
+        <textarea type="text" name="price" th:text="${product.price}"></textarea>
         <br>
         <button class="blue" type="submit">Opdater</button>
     </form>

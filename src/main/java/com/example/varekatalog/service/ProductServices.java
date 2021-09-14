@@ -12,20 +12,15 @@ import java.util.ArrayList;
 @Component
 public class ProductServices {
 
-    private final ProductMapper productMapper;
-
     @Autowired
-    public ProductServices(ProductMapper pm){
-        productMapper = pm;
-    }
+    ProductMapper productMapper;
 
     public ArrayList<Product> getProducts(){
         return productMapper.findAll();
     }
 
-    public boolean createProduct(String name, String price) throws Exception {
-        int priceInInt = Integer.parseInt(price);
-        int generatedId = productMapper.insert(new Product(name, priceInInt));
+    public boolean createProduct(Product product) throws Exception {
+        int generatedId = productMapper.insert(product);
         if (generatedId==-1){
             throw new Exception("Product creation failed");
         } else
@@ -40,8 +35,7 @@ public class ProductServices {
         return productMapper.findById(id);
     }
 
-    public boolean editProduct(String name, String price, int id){
-        int priceInInt = Integer.parseInt(price);
-        return productMapper.update(new Product(name, priceInInt, id));
+    public boolean editProduct(Product product){
+        return productMapper.update(product);
     }
 }

@@ -13,19 +13,12 @@ import java.util.ArrayList;
 @Controller
 public class HomeController {
 
-    private final ProductServices productServices;
-
     @Autowired
-    public HomeController(ProductServices ps){
-    productServices = ps;
-    }
+    ProductServices productServices;
 
     @GetMapping("/")
     public String renderIndex(Model model) {
-        ArrayList<Product> products = productServices.getProducts();
-        //products.forEach(System.out::println);
-        model.addAttribute("products", products);
-        //can't remember, is the model persisting after I change endpoint???
+        model.addAttribute("products", productServices.getProducts());
         return "index.html";
     }
 
@@ -35,54 +28,35 @@ public class HomeController {
     }
 
     @PostMapping("/add")
-    public String addProduct(WebRequest request, Model model) throws Exception {
-    String name = request.getParameter("product-name");
-    String price = request.getParameter("product-price");
-    boolean success = productServices.createProduct(name, price);
-    if (success){
-        model.addAttribute("message", "\'"+name+"\' er blevet tilføjet til varekataloget.");
-    } else {
-        model.addAttribute("message", "Something went wrong, please try again.");
-    }
-    model.addAttribute("products", productServices.getProducts());
-    return "index.html";
+    public String addProduct(@ModelAttribute Product product, Model model) throws Exception {
+    productServices.createProduct(product);
+    return "redirect:/";
     }
 
-    @GetMapping("/delete")
-    public String delete(@RequestParam("id") int productId, Model model){
-        boolean success = productServices.deleteProduct(productId);
-        if (success){
-            model.addAttribute("message", "Varen er belvet sletet fra varekataloget.");
-        } else {
-            model.addAttribute("message", "Something went wrong, please try again.");
-        }
-        model.addAttribute("products", productServices.getProducts());
-        return "index.html";
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") int id, Model model) {
+        productServices.deleteProduct(id);
+        return "redirect:/";
+
     }
 
-    @GetMapping("/edit")
-        public String getEditFrom(@RequestParam("id") int productId, WebRequest request, Model model){
-        request.setAttribute("productId", productId,1);
-        Product product = productServices.getProduct(productId);
-        System.out.println(product);
-        model.addAttribute("product", product);
+    @GetMapping("/edit/{id}")
+        public String getEditFrom(@PathVariable("id") int id, Model model){
+        model.addAttribute("product", productServices.getProduct(id));
         return "edit-product";
         }
 
     @PostMapping("/edit")
-        public String editProduct(WebRequest request, Model model){
+        public String editProduct(@ModelAttribute Product product){
+        /*
             String name = request.getParameter("product-name");
             String price = request.getParameter("product-price");
             int productId = (int) request.getAttribute("productId", 1);
             boolean success = productServices.editProduct(name, price, productId);
-            if (success){
-                model.addAttribute("message", "\'"+name+"\' er belvet redigeret.");
-            } else {
-                model.addAttribute("message", "Something went wrong, please try again.");
-            }
-            model.addAttribute("products", productServices.getProducts());
-            return "index";
-        }
+          */
+        productServices.editProduct(product);
+        return "redirect:/";
+    }
 
 
     @ExceptionHandler(Exception.class)
